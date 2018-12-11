@@ -12,6 +12,7 @@ struct node {
 
 void push(struct node **,int data);
 int countList(struct node *);
+int countRecursive(struct node *);
 void deleteList(struct node **);
 void printList(struct node *);
 
@@ -26,7 +27,11 @@ int main()
     push(&head,6);
     printList(head);
     
-    printf("count=%d \n", countList(head));
+    //iterative method
+    printf("iterative count=%d \n", countList(head));
+
+    //recursive method
+    printf("recursive count=%d \n",countRecursive(head));
 
     deleteList(&head);
 
@@ -87,4 +92,11 @@ void printList(struct node *headRef)
         headRef=headRef->next;
     }
     printf("\n");
+}
+int countRecursive(struct node *headRef)
+{
+    if(headRef == NULL)
+        return 0;
+    else
+        return 1 + countRecursive(headRef->next);
 }
